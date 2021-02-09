@@ -1,5 +1,5 @@
 ---
-  - name: Install metric beat
+  - name: Install metricbeat
     hosts: webservers
     become: yes
     tasks:
@@ -15,16 +15,16 @@
         src: /etc/ansible/files/metricbeat-config.yml
         dest: /etc/metricbeat/metricbeat.yml
 
-    - name: enable and configure docker module for metric beat
+    - name: enable and configure docker module for metricbeat
       command: metricbeat modules enable docker
 
-    - name: setup metric beat
+    - name: setup metricbeat
       command: metricbeat setup
 
-    - name: start metric beat
+    - name: start metricbeat
       command: service metricbeat start
 
-    - name: enable service filebeat on boot
+    - name: enable service metricbeat on boot
       systemd:
         name: metricbeat
         enabled: yes
