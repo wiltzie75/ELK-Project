@@ -34,8 +34,10 @@ Load balancing ensures that the application will be highly availability, in addi
 
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the logs and system traffic.
-- Filebeat monitors log files and collects information on locations and then sends it to Elasticsearch.
-- Metricbeat collects metrics and statistics and then sends the information to Elasticsearch.
+- Filebeat monitors log files and collects information on locations and then sends it to Elasticsearch.  One example of this is it will
+  monitor system.syslog and show any activity on the server.
+- Metricbeat collects metrics and statistics and then sends the information to Elasticsearch.  An example of what metricbeat will detect
+  is cpu and memory usage.
 
 The configuration details of each machine may be found below.
 
@@ -90,24 +92,30 @@ We have installed the following Beats, filebeat and metricbeat on these machines
 - 10.0.0.7, 10.0.0.8
 
 These Beats allow us to collect the following information from each machine:
-- Filebeat monitors and collects log files, specifically system.log and error.log.  It then outputs the results to Elasticsearch.  
+- Filebeat monitors and collects log files, specifically system.log and error.log.  It then outputs the results to Elasticsearch.  For
+  example, Filebeat will show the output of logs and whether the system has been modified or not.
 - Metricbeat collects metrics and statistics and then sends them over to Elasticsearch.  From there you can digest information on the
-  servers that you are monitoring.
-  _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
+  servers that you are monitoring.  For example, it will show the uptime of a system.
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node
 provisioned:
 
 SSH into the control node and follow the steps below:
-- Copy the playbook files to /etc/ansible/files/.
-- Update the _____ file to include...
+- Copy the install-elk.yml, filebeat-config.yml, and metricbeat-
+  config.yml files to /etc/ansible/files/.
+- Update the config files to include the host: "10.1.0.4:5601"
+  on line 62 and hosts: ["10.1.0.4:9200"].
+- Update the hosts file in /etc/ansible/ to include the
+  webservers: 10.0.0.7, 10.0.0.8 and elk: 10.1.0.4.
+- Update the ansible.cfg in /etc/ansible to include on line 107:
+  remote_user = azdmin
+
 - Run the playbook, and navigate to http://52.165.225.40:5601/ to check that the installation worked as expected.
 
-- The ELK playbook is called install-elk.yml and make sure it is installed in /etc/ansible/files.  To Filebeat playbook is called
-  filebeat-playbook.yml and should be located in /etc/ansible/roles.  Likewise for the Metricbeat playbook, it's called metricbeat-
-  playbook.yml and should be located in /etc/ansible/roles.
-- To update where the ELK playbook is run, please edit the hosts file located in /etc/ansible/.  You will change the IP address listed
+- The ELK playbook is called install-elk.yml and make sure it is installed in /etc/ansible/files.  Both the filebeat and metricbeat
+  playbook files are called filebeat-playbook.yml and metricbeat-playbook.yml and can be located in /etc/ansible/roles.
+- To update where the ELK playbook is ran, please edit the hosts file located in /etc/ansible/.  You will change the IP address listed
   under [elk], this will be line 29.  
 - To specify which machine to install Filebeat or Metricbeat, please edit the filebeat-config.yml or the metricbeat-config.yml located
   in /etc/ansible/files/.  This will be under Elasticsearch output.  
