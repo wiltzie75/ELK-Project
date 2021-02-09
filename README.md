@@ -52,13 +52,18 @@ The configuration details of each machine may be found below.
 
 The machines on the internal network are not exposed to the public Internet.
 
-Only the Jump machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
+Only the Jump machine can accept connections from the Internet.
+Access to this machine is only allowed from the following IP
+addresses:
 - 67.85.7.51
 
-Machines within the network can only be accessed by Jump Box-Provisioner.
-- The Jump Box-Provisioner is the only machine that has access to the ELK-VM, it's IP is 10.0.0.4
+Machines within the network can only be accessed by Jump Box-
+Provisioner.
+- The Jump Box-Provisioner is the only machine that has access
+  to the ELK-VM, it's IP is 10.0.0.4
 
-A summary of the access policies in place can be found in the table below.
+A summary of the access policies in place can be found in the
+table below.
 
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
@@ -69,31 +74,38 @@ A summary of the access policies in place can be found in the table below.
 
 ### Elk Configuration
 
-Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
+Ansible was used to automate configuration of the ELK machine.
+No configuration was performed manually, which is advantageous
+because...
 - It frees up time for IT administrators to monitor the network and attend to other important IT tasks.  
 
 The playbook implements the following tasks:
-- Installs docker and python_TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image;
-  etc._
+- Installs docker and python_TODO
 - Installs python
 - Increases memory to 262144
 - Downloads and launches the docker elk container
 - Enables docker on boot
 
-The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
+The following screenshot displays the result of running `docker
+ps` after successfully configuring the ELK instance.
 
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
+![TODO: Update the path with the name of your screenshot of
+docker ps output](Images/docker_ps_output.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
 - 10.0.0.7, 10.0.0.8
 
-We have installed the following Beats, filebeat and metricbeat on these machines:
+We have installed the following Beats, filebeat and metricbeat
+on these machines:
 - 10.0.0.7, 10.0.0.8
 
-These Beats allow us to collect the following information from each machine:
-- Filebeat monitors and collects log files, specifically system.log and error.log.  It then outputs the results to Elasticsearch.  For
-  example, Filebeat will show the output of logs and whether the system has been modified or not.
+These Beats allow us to collect the following information from
+each machine:
+- Filebeat monitors and collects log files, specifically
+  system.log and error.log.  It then outputs the results to
+  Elasticsearch.  For example, Filebeat will show the output of logs and whether the
+  system has been modified or not.
 - Metricbeat collects metrics and statistics and then sends them over to Elasticsearch.  From there you can digest information on the
   servers that you are monitoring.  For example, it will show the uptime of a system.
 
@@ -122,11 +134,11 @@ SSH into the control node and follow the steps below:
 - Goto http://52.165.225.40:5601/
 
 To run the playbook, make sure you are located in the directory where the playbook file is.  Once there, run:
-ansible-playbook install-elk.yml
+```ansible-playbook install-elk.yml```
 
 For filebeat and metricbeat:
-ansible-playbook filebeat-playbook.yml
-ansible-playbook metricbeat-playbook.yml
+```ansible-playbook filebeat-playbook.yml```
+```ansible-playbook metricbeat-playbook.yml```
 
 To update the playbook, from the directory:
 nano install-elk.yml
