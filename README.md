@@ -8,8 +8,8 @@ The files in this repository were used to configure the network depicted below.
 
 ![TODO: Update the path with the name of your diagram](Images/ELK_diagram.png)
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire
-deployment pictured above. Alternatively, select portions of the playbook file may be used to install only certain pieces of it, such as
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to recreate the entire
+deployment pictured above. Alternatively, individual playbooks can be run to install certain pieces, such as
 Filebeat.
 
   - **install-elk.yml**
@@ -61,8 +61,10 @@ addresses:
 
 Machines within the network can only be accessed by Jump Box-
 Provisioner.
+
 - The Jump Box-Provisioner is the only machine that has access
   to the ELK-VM, it's IP is 10.0.0.4
+- The ELK machine can have access from the admins public IP through port 5601.
 
 A summary of the access policies in place can be found in the
 table below.
@@ -82,7 +84,7 @@ because...
 - It frees up time for IT administrators to monitor the network and attend to other important IT tasks.  It also allows one playbook to
   configure the entire system.
 
-The playbook implements the following tasks:
+The elk playbook implements the following tasks:
 - Installs docker.io and python3-pip
 - Installs docker module
 - Increases memory to 262144
