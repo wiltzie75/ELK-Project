@@ -1,6 +1,5 @@
 # ELK-Project
-This is the ELK Project for Columbia Cybersecurity Bootcamp.  I used Azure to create a network with supporting VMs and installed a full
-functional ELK Server.
+This was a solo project, where I configured a Azure Cloud network with 4 vms, 2 network security groups and a load balancer.  Installed docker containers to deploy a fully functional ELK stack.  Configured ELK to use filebeat and metricbeat.
 
 ## Automated ELK Stack Deployment
 
